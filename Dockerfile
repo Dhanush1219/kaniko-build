@@ -67,6 +67,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
 # Create a non-root user and necessary directories
 RUN useradd -m azureuser && \
     usermod -aG sudo azureuser && \
+    echo "azureuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     mkdir -p /azp/agent && \
     chown -R azureuser:azureuser /azp && \
     chmod -R 777 /azp/agent
